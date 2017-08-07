@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "tarot/items:pageCard"
+		"layer0": "tarot:items/pagecard"
 	}
 }

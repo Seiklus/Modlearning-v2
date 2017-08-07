@@ -1,43 +1,29 @@
 package net.seiklus.item;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemEgg;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.seiklus.TarotCard;
 
-public class ItemPageCard extends ItemEgg {
+public class ItemPageCard extends Item {
 
-
+    //this is to give the register information about the pagecard item
     public ItemPageCard()  {
         setRegistryName("pagecard");        // The unique name (within your mod) that identifies this item
         setUnlocalizedName(TarotCard.MODID + ".pagecard");     // Used for localization (en_US.lang)
-        this.maxStackSize = 4;
+        this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.MISC);
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-    {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
-
-
-        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-
-        if (!worldIn.isRemote)
-        {
-            worldIn.spawnParticle(EnumParticleTypes.ITEM_CRACK,playerIn.posX,playerIn.posY+3,playerIn.posZ,0,1,0, Item.getIdFromItem(ModItems.pageCard));
-
-        }
-
-        playerIn.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+    //this is to load the model in the game using the json file in assets
+    @SideOnly(Side.CLIENT)
+    public void initModel() {
+        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
+
 
 }
 
