@@ -35,7 +35,7 @@ public class TarotCard {
     public static final String MODVERSION = "1.0.0";
 
 
-    @SidedProxy(clientSide = "src.main.java.net.seiklus.proxy.ClientProxy", serverSide = "src.main.java.net.seiklus.proxy.CommonProxy")
+    @SidedProxy(clientSide = "net.seiklus.proxy.ClientProxy", serverSide = "net.seiklus.proxy.CommonProxy")
     public static CommonProxy proxy;
 
 

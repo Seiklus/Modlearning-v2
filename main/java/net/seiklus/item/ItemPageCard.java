@@ -2,14 +2,13 @@ package net.seiklus.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.seiklus.TarotCard;
 
@@ -32,10 +31,8 @@ public class ItemPageCard extends ItemEgg {
 
         if (!worldIn.isRemote)
         {
+            worldIn.spawnParticle(EnumParticleTypes.ITEM_CRACK,playerIn.posX,playerIn.posY+3,playerIn.posZ,0,1,0, Item.getIdFromItem(ModItems.pageCard));
 
-            worldIn.createExplosion(null,playerIn.getPosition().getX(),
-                                    playerIn.getPosition().getY(),
-                                    playerIn.getPosition().getZ(),10,true);
         }
 
         playerIn.addStat(StatList.getObjectUseStats(this));
